@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { products } from '../data/products';
 import Section from '../components/section';
 import ProductListingList from '../components/AbaProdutos/productListingList';
+import { useCart } from '../contexts/cartContext';
 import { Link } from 'react-router-dom';
 
 const ProductPage = () => {
@@ -105,6 +106,7 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
+
 
 
 

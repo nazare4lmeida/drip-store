@@ -8,9 +8,12 @@ const MeusPedidosPage = () => {
   const [showPaymentOptions, setShowPaymentOptions] = useState(false);
 
   const handleDelete = () => {
-    removeFromCart(itemToDelete);
-    setItemToDelete(null);
-  };
+  const productId = cartItems[itemToDelete]?.id;
+  if (productId !== undefined) {
+    removeFromCart(productId);
+  }
+  setItemToDelete(null);
+};
 
   const handleOverlayClick = (e, closeFunc) => {
     if (e.target === e.currentTarget) {
