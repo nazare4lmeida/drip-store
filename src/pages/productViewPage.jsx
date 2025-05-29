@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useCart } from '.././contexts/cartContext';
+import { useCart } from '../contexts/cartContext';
 import { products } from '../data/products'; // ou de onde estiver vindo a lista de produtos
 import { useState } from 'react';
 

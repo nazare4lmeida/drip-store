@@ -27,12 +27,30 @@ export const CartProvider = ({ children }) => {
     localStorage.removeItem('cartItems');
   };
 
+  const isInCart = (id) => cartItems.some(item => item.id === id);
+
+  const toggleCartItem = (product) => {
+    if (isInCart(product.id)) {
+      removeFromCart(product.id);
+    } else {
+      addToCart(product);
+    }
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{
+      cartItems,
+      addToCart,
+      removeFromCart,
+      clearCart,
+      isInCart,
+      toggleCartItem
+    }}>
       {children}
     </CartContext.Provider>
   );
 };
+
 
 
 

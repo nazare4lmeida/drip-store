@@ -8,7 +8,7 @@ const SearchBar = () => {
 
   const handleSearch = () => {
     if (search.trim()) {
-      navigate(`/products?filter=${search}`);
+      navigate(`/produtos?filter=${encodeURIComponent(search.trim())}`);
     }
   };
 
@@ -28,10 +28,17 @@ const SearchBar = () => {
         onChange={(e) => setSearch(e.target.value)}
         onKeyDown={handleKeyPress}
       />
-      <FiSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg" />
+      <button
+        onClick={handleSearch}
+        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-pink-600 transition"
+        aria-label="Buscar"
+      >
+        <FiSearch className="text-lg" />
+      </button>
     </div>
   );
 };
 
 export default SearchBar;
+
 

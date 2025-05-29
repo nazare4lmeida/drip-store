@@ -5,12 +5,10 @@ import ProductViewPage from './pages/productViewPage';
 import CategoriasPage from './pages/categoriasPage';
 import MeusPedidosPage from './pages/meusPedidosPage';
 import ProductPage from './pages/productPage'; 
-import { CartProvider } from './contexts/cartContext';
 
 
 function App() {
   return (
-    <CartProvider>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
@@ -20,7 +18,6 @@ function App() {
           <Route path="pedidos" element={<MeusPedidosPage />} />
         </Route>
       </Routes>
-    </CartProvider>
   );
 }
 export default App;

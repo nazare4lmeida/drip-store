@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { products } from '../data/products';
-import Section from '../components/section';
 import ProductListingList from '../components/AbaProdutos/productListingList';
-import { useCart } from '../contexts/cartContext';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
 
 const ProductPage = () => {
   const [order, setOrder] = useState('menor-preco');
   const [filters, setFilters] = useState([]);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const searchQuery = searchParams.get('filter')?.toLowerCase() || '';
+
 
   const allFilters = [
     { label: 'Marca', options: ['Adidas', 'Balenciaga', 'K-Swiss', 'Nike', 'Puma'] },
@@ -22,13 +26,21 @@ const ProductPage = () => {
     );
   };
 
-  const filteredProducts = products.filter((product) => {
-    if (filters.length === 0) return true;
+const filteredProducts = products.filter((product) => {
+  const matchesSearch =
+    !searchQuery ||
+    product.title.toLowerCase().includes(searchQuery) ||
+    product.category?.toLowerCase().includes(searchQuery);
 
-    const matchMarca = filters.some((f) => product.title.toLowerCase().includes(f.toLowerCase()));
-    const matchCategoria = filters.includes(product.category);
-    return matchMarca || matchCategoria;
-  });
+  const matchesFilter =
+    filters.length === 0 ||
+    filters.some((f) =>
+      product.title.toLowerCase().includes(f.toLowerCase()) ||
+      product.category === f
+    );
+
+  return matchesSearch && matchesFilter;
+});
 
   const sortedProducts = filteredProducts.sort((a, b) => {
     if (order === 'menor-preco') return a.price - b.price;

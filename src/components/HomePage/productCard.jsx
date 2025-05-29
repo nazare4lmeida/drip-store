@@ -1,5 +1,14 @@
-const ProductCard = ({ product = {}, onClick }) => {
-  const { image, price, priceDiscount, name } = product;
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../../contexts/cartContext";
+
+const ProductCard = ({ product = {} }) => {
+  const { image, price, priceDiscount, name, id, category } = product;
+  const { cartItems, addToCart, removeFromCart } = useCart(); // ✅ cartItems certo
+  const navigate = useNavigate();
+
+  const isInCart = cartItems.some((item) => item.id === id);
+  console.log("Render Card", id, { isInCart, cartItems });
+
 
   const discountPercentage =
     typeof price === "number" &&
@@ -16,49 +25,78 @@ const ProductCard = ({ product = {}, onClick }) => {
     }).format(value);
   };
 
+  const handleCartClick = () => {
+    if (isInCart) {
+      removeFromCart(id);
+    } else {
+      addToCart(product);
+    }
+  };
+
+  const handleViewMore = () => {
+    navigate(`/produto/${id}`); // ✅ ajuste importante na rota
+    window.scrollTo(0, 0);
+  };
+
   return (
-    <div
-      className="flex flex-col gap-2 w-full cursor-pointer"
-      onClick={onClick}
-    >
-      <div className="relative bg-white rounded-xl p-4 shadow-sm border border-gray-200 flex items-center justify-center aspect-square">
+    <div className="flex flex-col border rounded-lg overflow-hidden shadow-md bg-white transition hover:shadow-lg w-full">
+      <div className="relative h-56 flex items-center justify-center p-4">
         {discountPercentage && (
-          <span className="absolute top-3 left-3 bg-lime-200 text-green-800 text-xs font-semibold px-2 py-1 rounded-md">
+          <span className="absolute top-2 left-2 bg-lime-200 text-xs font-bold text-gray-800 px-2 py-1 rounded">
             {discountPercentage}% OFF
           </span>
         )}
         <img
           src={image}
-          alt={name}
-          className="h-full w-full object-contain rounded-xl"
+          alt={`Imagem do produto ${name}`}
+          className="max-h-40 object-contain"
         />
       </div>
 
-      <div className="text-left px-1">
-        <p className="text-gray-400 text-sm">Tênis</p>
-        <h3 className="text-gray-600 text-sm font-medium line-clamp-1">{name}</h3>
+      <div className="p-4 flex flex-col gap-2">
+        <p className="text-sm text-gray-500">{category || "Produto"}</p>
+        <p className="font-medium text-sm">{name}</p>
 
-        <div className="flex gap-2 items-center mt-1">
-          {typeof priceDiscount === "number" ? (
-            <>
-              <span className="text-gray-400 line-through text-sm">
-                {formatPrice(price)}
-              </span>
-              <span className="text-black font-semibold text-base">
-                {formatPrice(priceDiscount)}
-              </span>
-            </>
-          ) : (
-            <span className="text-black font-semibold text-base">
+        <div className="text-sm">
+          {typeof price === "number" && priceDiscount && (
+            <span className="line-through text-gray-400 mr-2">
               {formatPrice(price)}
             </span>
           )}
+          <span className="font-bold text-black">
+            {formatPrice(priceDiscount ?? price)}
+          </span>
         </div>
+
+        <button
+          onClick={handleCartClick}
+          className={`mt-2 py-1 px-3 rounded text-sm transition font-semibold w-full ${
+            isInCart
+              ? "bg-green-500 text-white hover:bg-green-600"
+              : "bg-primary text-white hover:brightness-110"
+          }`}
+        >
+          {console.log("Botão render:", id, isInCart)}
+          {isInCart ? "Adicionado ao carrinho" : "Adicionar ao carrinho"}
+        </button>
+
+        <button
+          onClick={handleViewMore}
+          className="text-sm px-3 py-1 rounded bg-gray-200 text-gray-800 font-medium hover:bg-gray-300 mt-1"
+        >
+          Ver mais
+        </button>
       </div>
     </div>
   );
 };
 
 export default ProductCard;
+
+
+
+
+
+
 
 

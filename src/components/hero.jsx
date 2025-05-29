@@ -2,13 +2,16 @@ import { useState } from 'react';
 import fireIcon from '../assets/fire.png';
 import dotsImage from '../assets/dots.png';
 import sneakerImage from '../assets/White-Sneakers-PNG.png';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
   const slides = [
     {
-      title: 'Queima de estoque',
+      title: '',
       description: 'Descontos imperdíveis em tênis Nike para você renovar seu estilo.',
       image: sneakerImage,
     },
@@ -29,6 +32,21 @@ const Hero = () => {
     },
   ];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) =>
+        prevSlide === slides.length - 1 ? 0 : prevSlide + 1
+      );
+    }, 2000);
+
+    return () => clearInterval(interval); 
+  }, [slides.length]);
+
+  const goToProducts = () => {
+    navigate('/produtos');
+    window.scrollTo(0, 0);
+  };
+
   const current = slides[currentSlide];
 
   return (
@@ -38,39 +56,43 @@ const Hero = () => {
         bg-gradient-to-t from-[#f0f0f0] to-white blur-2xl z-0">
       </div>
 
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[500px_1.5fr] items-center gap-10 max-w-7xl mx-auto min-h-[400px]">
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[500px_auto] items-center gap-10 max-w-7xl mx-auto min-h-[400px]">
         <div className="text-center lg:text-left max-w-[900px] mx-auto lg:mx-0 transition-all duration-300">
           <p className="text-yellow-500 text-sm font-semibold mb-2">
-            Melhores ofertas personalizadas
+            Melhores ofertas personalizadas:
           </p>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-neutral-900 leading-snug mb-6">
-            {current.title} <br />
-            <span className="inline-flex items-center gap-2">
-              <span className="text-neutral-900">Nike</span>
-              <img
-                src={fireIcon}
-                alt="Ícone de fogo"
-                className="w-6 h-6 md:w-8 md:h-8 inline-block"
-              />
-            </span>
-          </h1>
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-neutral-900 leading-snug mb-6">
+          Queima de Estoque{' '}
+          <span className="inline-flex items-center gap-2">
+          Nike
+            <img
+              src={fireIcon}
+              alt="Ícone de fogo"
+              className="w-16 h-16 md:w-19 md:h-18 inline-block"
+            />
+          </span>
+        </h1>
 
           <p className="text-gray-600 text-sm md:text-base font-normal mb-6 max-w-xl mx-auto lg:mx-0">
             {current.description}
           </p>
 
-          <button className="bg-pink-600 hover:bg-pink-700 text-white font-medium px-8 py-2 rounded-lg shadow transition min-w-[180px]">
+          <button
+            onClick={goToProducts}
+            className="bg-pink-600 hover:bg-pink-700 text-white px-12 py-2 rounded-lg font-semibold transition"
+          >
             Ver Ofertas
           </button>
         </div>
 
-        <div className="relative flex justify-center lg:justify-end items-center">
+        <div className="relative flex justify-center lg:justify-end items-center w-full">
           <img
             src={current.image}
             alt={current.title}
-            className="w-full max-w-[600px] md:max-w-[700px] lg:max-w-[750px] object-contain drop-shadow-xl transition-all duration-300"
+            className="w-full object-contain drop-shadow-xl transition-all duration-300"
           />
+
           <img
             src={dotsImage}
             alt="Pontinhos decorativos"
@@ -96,6 +118,7 @@ const Hero = () => {
 };
 
 export default Hero;
+
 
 
 

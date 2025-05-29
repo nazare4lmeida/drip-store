@@ -5,6 +5,8 @@ import { IoShirtOutline } from "react-icons/io5";
 import { PiBaseballCapLight, PiHeadphonesLight, PiPantsLight } from "react-icons/pi";
 import { GiConverseShoe } from "react-icons/gi";
 import airJordanImg from '../assets/Laye 1.png';
+import { useNavigate } from 'react-router-dom';
+
 
 const categoryIcons = [
   { icon: <IoShirtOutline size={40} />, label: "Camisetas" },
@@ -16,51 +18,67 @@ const categoryIcons = [
 
 const products = [
   {
+    id: 1,
     name: "Produto 1",
     image: "/home-slide-1.jpeg",
     price: 200,
     priceDiscount: 149.9,
   },
   {
+    id: 2,
     name: "Produto 2",
     image: "/home-slide-2.jpeg",
     price: 200,
   },
   {
+    id: 3,
     name: "Produto 3",
     image: "/home-slide-3.jpeg",
     price: 99.9,
   },
   {
+    id: 4,
     name: "Produto 4",
     image: "/home-slide-4.jpeg",
     price: 150,
     priceDiscount: 120,
   },
   {
+    id: 5,
     name: "Produto 5",
     image: "/home-slide-5.jpeg",
     price: 75,
   },
   {
+    id: 6,
     name: "Produto 6",
     image: "/home-slide-6.jpeg",
     price: 30,
   },
   {
+    id: 7,
     name: "Produto 7",
     image: "/home-slide-7.jpeg",
     price: 200,
     priceDiscount: 180,
   },
   {
+    id: 8,
     name: "Produto 8",
     image: "/home-slide-8.jpeg",
     price: 250,
   },
 ];
 
+
 const HomePage = () => {
+  const navigate = useNavigate();
+
+  const goToProducts = () => {
+    navigate('/produtos');
+    window.scrollTo(0, 0);
+  };
+
   return (
     <>
       <Hero />
@@ -87,7 +105,10 @@ const HomePage = () => {
                 30% OFF
               </div>
               <div className="absolute bottom-6 left-4 z-10">
-                <button className="bg-white text-pink-600 text-sm font-semibold px-6 py-2 rounded-md shadow hover:bg-pink-100 transition">
+                <button
+                  onClick={goToProducts}
+                  className="bg-white text-pink-600 text-sm font-semibold px-6 py-2 rounded-md shadow hover:bg-pink-100 transition"
+                >
                   Comprar
                 </button>
               </div>
@@ -99,7 +120,11 @@ const HomePage = () => {
         <Section>
           <div className="flex justify-center gap-6 flex-wrap px-4 md:px-0 mt-10">
             {categoryIcons.map((item, index) => (
-              <div key={index} className="flex flex-col items-center gap-2 cursor-pointer group">
+              <div
+                key={index}
+                onClick={goToProducts}
+                className="flex flex-col items-center gap-2 cursor-pointer group"
+              >
                 <div className="w-24 h-24 rounded-full bg-white shadow-md flex items-center justify-center text-gray-700 group-hover:text-pink-600 transition-colors">
                   {item.icon}
                 </div>
@@ -111,7 +136,7 @@ const HomePage = () => {
           </div>
         </Section>
 
-        {/* Produtos em alta */}
+        {/* Produtos em destaque */}
         <Section>
           <ProductListing products={products} />
         </Section>
@@ -142,7 +167,10 @@ const HomePage = () => {
             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
             quis nostrud exercitation ullamco laboris nisi ut aliquip.
           </p>
-          <button className="bg-pink-600 hover:bg-pink-700 text-white px-12 py-2 rounded-lg font-semibold transition">
+          <button
+            onClick={goToProducts}
+            className="bg-pink-600 hover:bg-pink-700 text-white px-12 py-2 rounded-lg font-semibold transition"
+          >
             Ver Oferta
           </button>
         </div>
@@ -152,7 +180,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-
-
-
