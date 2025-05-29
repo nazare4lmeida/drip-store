@@ -6,7 +6,7 @@ const MeusPedidosPage = () => {
   const { cartItems, removeFromCart } = useCart();
   const [itemToDelete, setItemToDelete] = useState(null);
   const [showPaymentOptions, setShowPaymentOptions] = useState(false);
-  const [showSuccessAlert, setShowSuccessAlert] = useState(false); // ✅ novo estado
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false); 
 
   const handleDelete = () => {
     const productId = cartItems[itemToDelete]?.id;
@@ -30,7 +30,6 @@ const MeusPedidosPage = () => {
     }, 3000);
   };
 
-  // ✅ Cálculo total com verificação
   const total = cartItems.reduce((sum, item) => {
     if (!item || typeof item.price !== 'number') return sum;
     return sum + item.price * 0.7; // com desconto de 30%
@@ -38,7 +37,7 @@ const MeusPedidosPage = () => {
 
   return (
     <div className="px-10 py-6 relative">
-      {/* ✅ Alerta de sucesso no topo */}
+
       {showSuccessAlert && (
         <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded shadow-lg z-50 animate-fade-in-out">
           ✅ Pedido realizado com sucesso!
@@ -71,12 +70,10 @@ const MeusPedidosPage = () => {
             ))}
           </ul>
 
-          {/* ✅ Total da compra */}
           <div className="mt-6 text-right text-lg font-semibold text-primary">
             Total: R$ {total.toFixed(2)}
           </div>
 
-          {/* Botão de pagamento */}
           <div className="mt-6 flex justify-end">
             <button
               onClick={() => setShowPaymentOptions(true)}
@@ -86,7 +83,6 @@ const MeusPedidosPage = () => {
             </button>
           </div>
 
-          {/* Modal de confirmação de exclusão */}
           {itemToDelete !== null && (
             <div
               className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
@@ -118,7 +114,6 @@ const MeusPedidosPage = () => {
             </div>
           )}
 
-          {/* Modal de opções de pagamento */}
           {showPaymentOptions && (
             <div
               className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"

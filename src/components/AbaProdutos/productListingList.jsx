@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 const ProductListingList = ({ products }) => {
-  const { cartItems = [], addToCart, removeFromCart } = useCart(); // fallback seguro
-  const [added, setAdded] = useState({}); // controla o botão
-
+  const { cartItems = [], addToCart, removeFromCart } = useCart(); 
+  const [added, setAdded] = useState({}); 
   const toggleCart = (product) => {
     const isInCart = cartItems.some((item) => item.id === product.id);
     if (isInCart) {
@@ -29,7 +28,6 @@ const ProductListingList = ({ products }) => {
             key={product.id}
             className="relative border p-4 rounded shadow hover:shadow-md bg-white"
           >
-            {/* Selo de desconto */}
             {discount > 0 && (
               <div className="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
                 {discount}% OFF

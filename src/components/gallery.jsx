@@ -19,7 +19,7 @@ const Gallery = ({ images, width = '100%', height = 'auto', radius = 'xl', showT
 
   return (
     <div className="relative w-full max-w-6xl mx-auto" style={{ height }}>
-      {/* Imagem principal */}
+
       <div className={`w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[680px] rounded-${radius} overflow-hidden`}>
         <img
           src={images[currentIndex].src}
@@ -28,7 +28,6 @@ const Gallery = ({ images, width = '100%', height = 'auto', radius = 'xl', showT
         />
       </div>
 
-      {/* Botões de navegação */}
       <button
         onClick={handlePrev}
         disabled={currentIndex === 0}
@@ -47,7 +46,6 @@ const Gallery = ({ images, width = '100%', height = 'auto', radius = 'xl', showT
         <img src={arrowRight} alt="Próxima" />
       </button>
 
-      {/* Indicadores de navegação (pontinhos) */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
         {images.map((_, index) => (
           <button
@@ -61,7 +59,6 @@ const Gallery = ({ images, width = '100%', height = 'auto', radius = 'xl', showT
         ))}
       </div>
 
-      {/* Thumbnails (opcional) */}
       {showThumbs && (
         <div className="flex justify-center mt-4 gap-2 flex-wrap">
           {images.map((image, index) => (

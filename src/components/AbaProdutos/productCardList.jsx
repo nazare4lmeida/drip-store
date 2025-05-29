@@ -1,4 +1,3 @@
-// Corrigido ProductCardList.jsx
 import { Link } from "react-router-dom";
 import { useCart } from "../../contexts/cartContext";
 
@@ -8,7 +7,7 @@ const ProductCardList = ({ id, image, name, category, price, priceDiscount, full
   const isInCart = cartItems.some((item) => item.id === id);
 
   const handleCartClick = (e) => {
-    e.preventDefault(); // Evita que clique no botão dispare a navegação do Link
+    e.preventDefault(); 
     if (isInCart) {
       removeFromCart(id);
     } else {

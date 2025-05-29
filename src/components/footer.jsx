@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#111] text-white px-6 md:px-20 py-10">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-        {/* Coluna 1: Logo + descrição + redes sociais */}
+
         <div>
           <img src={LogoFooter} alt="Drip Store Logo" className="h-8 mb-4" />
           <p className="text-sm text-gray-400 mb-4">
@@ -18,7 +18,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Coluna 2: Informação */}
         <div>
           <h3 className="font-semibold mb-4">Informação</h3>
           <ul className="space-y-2 text-sm text-gray-400">
@@ -31,7 +30,6 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Coluna 3: Categorias */}
         <div>
           <h3 className="font-semibold mb-4">Categorias</h3>
           <ul className="space-y-2 text-sm text-gray-400">
@@ -43,7 +41,6 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Coluna 4: Contato */}
         <div>
           <h3 className="font-semibold mb-4">Contato</h3>
           <p className="text-sm text-gray-400 leading-relaxed">
@@ -53,7 +50,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Linha divisória e copyright */}
       <div className="border-t border-gray-700 mt-10 pt-6 text-center text-xs text-gray-500">
         © 2022 Digital College
       </div>

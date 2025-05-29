@@ -83,7 +83,6 @@ const HomePage = () => {
     <>
       <Hero />
 
-      {/* Fundo cinza claro para o conteúdo da Home */}
       <div className="bg-[#f6f6f6] pb-20 pt-10">
         <h2 className="text-2xl font-semibold text-gray-700 px-2 md:px-20 lg:px-40 xl:px-58 mb-6">
           Coleções em destaque:
@@ -116,7 +115,6 @@ const HomePage = () => {
           ))}
         </div>
 
-        {/* Ícones de categoria */}
         <Section>
           <div className="flex justify-center gap-6 flex-wrap px-4 md:px-0 mt-10">
             {categoryIcons.map((item, index) => (
@@ -136,13 +134,11 @@ const HomePage = () => {
           </div>
         </Section>
 
-        {/* Produtos em destaque */}
         <Section>
           <ProductListing products={products} />
         </Section>
       </div>
 
-      {/* Oferta especial */}
       <section className="bg-white py-16 px-4 md:px-20 lg:px-32 flex flex-col md:flex-row items-center gap-12 relative">
         <div className="absolute left-1/2 -translate-x-1/2 md:left-44 md:translate-x-0 top-1/2 -translate-y-1/2 
           w-[300px] h-[300px] md:w-[400px] md:h-[400px] 

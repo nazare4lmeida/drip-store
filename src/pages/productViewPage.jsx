@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useCart } from '../contexts/cartContext';
-import { products } from '../data/products'; // ou de onde estiver vindo a lista de produtos
+import { products } from '../data/products';
 import { useState } from 'react';
 
 const ProductViewPage = () => {
@@ -29,18 +29,16 @@ const ProductViewPage = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-      {/* Galeria */}
+
       <div className="flex justify-center items-center bg-gray-100 p-8 rounded w-full max-w-full">
         <img src={product.image} alt={product.name} className="object-contain max-h-[400px] w-full h-auto" />
       </div>
 
-      {/* Info */}
       <div className="flex flex-col w-full max-w-full">
         <h1 className="text-2xl sm:text-3xl font-semibold mb-2">{product.name}</h1>
         <p className="text-pink-700 text-xl sm:text-2xl font-bold mb-1">R$ {product.price.toFixed(2)}</p>
         <p className="text-gray-600 mb-6 text-sm sm:text-base">{product.description}</p>
 
-        {/* Seleção de Tamanho */}
         <div className="mb-4">
           <h3 className="text-sm font-semibold text-gray-700 mb-2">Tamanho</h3>
           <div className="flex gap-2 flex-wrap">
@@ -60,7 +58,6 @@ const ProductViewPage = () => {
           </div>
         </div>
 
-        {/* Seleção de Cor */}
         <div className="mb-6">
           <h3 className="text-sm font-semibold text-gray-700 mb-2">Cor</h3>
           <div className="flex gap-2 flex-wrap">
@@ -80,7 +77,6 @@ const ProductViewPage = () => {
           </div>
         </div>
 
-        {/* Botão de comprar */}
         <button
           onClick={handleToggleCart}
           className={`w-full text-center font-semibold text-white py-3 rounded-md transition-colors text-sm sm:text-base ${

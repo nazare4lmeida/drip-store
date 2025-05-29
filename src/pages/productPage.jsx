@@ -47,7 +47,7 @@ const ProductPage = () => {
 
   return (
     <div className="flex flex-col lg:flex-row gap-8 px-4 sm:px-6 md:px-10 py-6 w-full">
-      {/* Sidebar de Filtros */}
+
       <aside className="w-full lg:w-[280px] flex-shrink-0">
         <h3 className="text-gray-700 text-[16px] font-semibold mb-4">Filtrar por:</h3>
         {allFilters.map((filter) => (
@@ -70,9 +70,8 @@ const ProductPage = () => {
         ))}
       </aside>
 
-      {/* Main */}
       <main className="flex-1 w-full">
-        {/* Linha de cima: ordenação + contagem */}
+
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 w-full flex-wrap">
           <span className="text-sm text-gray-500">
             {filters.length === 0 ? (
@@ -101,7 +100,6 @@ const ProductPage = () => {
 
         <ProductListingList products={sortedProducts} />
 
-        {/* Botão Ir para o carrinho */}
         <div className="flex justify-end mt-10 w-full">
           <Link to="/pedidos" className="w-full sm:w-auto">
             <button className="w-full sm:w-auto px-6 py-3 bg-pink-700 hover:bg-pink-800 text-white font-semibold rounded text-center">
