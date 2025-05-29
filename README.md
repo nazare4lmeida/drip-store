@@ -1,87 +1,59 @@
-# Welcome to React Router!
+# 👟 Drip Store
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Um e-commerce moderno desenvolvido com React, React Router e TailwindCSS. O projeto simula uma loja online com funcionalidades completas de navegação, pesquisa, visualização de produtos, filtros, carrosséis promocionais e carrinho de compras.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## ✨ Funcionalidades
 
-## Features
+- 🛍 Página inicial com carrossel de promoções automáticas
+- 🔥 Destaques de produtos com selo de desconto
+- 🧾 Página de listagem com filtros por categoria, gênero, marca e estado
+- 🧠 Filtro funcional por categoria (ex: “Tênis”)
+- 📦 Página de visualização detalhada do produto com imagens, tamanhos e cores
+- 🛒 Carrinho de compras com persistência via localStorage
+- ➕ Botões de “Adicionar ao carrinho” e “Ver mais” por produto
+- 🎯 Layout totalmente responsivo baseado em design Figma
+- 🖼 Imagens reais de produtos
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## ⚙️ Tecnologias
 
-## Getting Started
+- ⚛️ React (com Vite)
+- 📦 React Router DOM
+- 🎨 TailwindCSS
+- 🗂 Context API
+- 🧠 JavaScript
+- 💾 localStorage para manter os itens do carrinho
 
-### Installation
+## 🚀 Como rodar o projeto:
 
-Install the dependencies:
+### Instalação:
+
+Clone o repositório e instale as dependências:
 
 ```bash
 npm install
-```
 
-### Development
+Desenvolvimento:
 
-Start the development server with HMR:
+Inicie o servidor de desenvolvimento:
 
 ```bash
 npm run dev
-```
 
-Your application will be available at `http://localhost:5173`.
+Abra http://localhost:5173 no navegador para visualizar a aplicação.
 
-## Building for Production
+Outros ambientes suportados:
 
-Create a production build:
+Vercel
 
-```bash
-npm run build
-```
+Netlify
 
-## Deployment
+Railway
 
-### Docker Deployment
+Firebase Hosting
 
-To build and run using Docker:
+GitHub Pages (com adaptações)
 
-```bash
-docker build -t my-app .
+🎨 **Estilização:**
+Este projeto utiliza TailwindCSS para estilização rápida, responsiva e moderna. Todos os componentes são mobile-first e adaptam-se dinamicamente ao tamanho da tela.
 
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+Feito com 💖 usando React + Tailwind por Nazaré, Jacque e Adriana.
