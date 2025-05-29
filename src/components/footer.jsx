@@ -4,7 +4,7 @@ import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
 const Footer = () => {
   return (
     <footer className="bg-[#111] text-white px-6 md:px-20 py-10">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         {/* Coluna 1: Logo + descrição + redes sociais */}
         <div>
           <img src={LogoFooter} alt="Drip Store Logo" className="h-8 mb-4" />

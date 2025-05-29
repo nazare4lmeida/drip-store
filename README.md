@@ -23,25 +23,25 @@ Um e-commerce moderno desenvolvido com React, React Router e TailwindCSS. O proj
 - 🧠 JavaScript
 - 💾 localStorage para manter os itens do carrinho
 
-## 🚀 Como rodar o projeto:
+## 🚀 Como rodar o projeto
 
-### 💻 Instalação: 
+### 💻 Instalação
 
 Clone o repositório e instale as dependências:
 
 ```bash```
 `npm install`
 
-## 👽 Desenvolvimento:
+## 👽 Desenvolvimento
 
 Inicie o servidor de desenvolvimento:
 
 ```bash```
 `npm run dev`
 
-Abra http://localhost:5173 no navegador para visualizar a aplicação.
+Abra <http://localhost:5173> no navegador para visualizar a aplicação.
 
-## Outros ambientes suportados: 👀 	
+## Outros ambientes suportados 👀
 
 Vercel
 
@@ -53,8 +53,8 @@ Firebase Hosting
 
 GitHub Pages (com adaptações)
 
-🎨 **Estilização:**
+🎨**Estilização:**
 
 Este projeto utiliza TailwindCSS para estilização rápida, responsiva e moderna. Todos os componentes são mobile-first e adaptam-se dinamicamente ao tamanho da tela.
 
-Feito com 💗 usando React + Tailwind por *Nazaré, Jacque e Adriana.*
+Feito com 💗 usando React + Tailwind por *Nazaré, Jacque e Adriana*

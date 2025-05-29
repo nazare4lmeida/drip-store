@@ -30,15 +30,15 @@ const ProductViewPage = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 gap-8">
       {/* Galeria */}
-      <div className="flex justify-center items-center bg-gray-100 p-8 rounded">
-        <img src={product.image} alt={product.name} className="object-contain max-h-[400px]" />
+      <div className="flex justify-center items-center bg-gray-100 p-8 rounded w-full max-w-full">
+        <img src={product.image} alt={product.name} className="object-contain max-h-[400px] w-full h-auto" />
       </div>
 
       {/* Info */}
-      <div>
-        <h1 className="text-3xl font-semibold mb-2">{product.name}</h1>
-        <p className="text-pink-700 text-2xl font-bold mb-1">R$ {product.price.toFixed(2)}</p>
-        <p className="text-gray-600 mb-6">{product.description}</p>
+      <div className="flex flex-col w-full max-w-full">
+        <h1 className="text-2xl sm:text-3xl font-semibold mb-2">{product.name}</h1>
+        <p className="text-pink-700 text-xl sm:text-2xl font-bold mb-1">R$ {product.price.toFixed(2)}</p>
+        <p className="text-gray-600 mb-6 text-sm sm:text-base">{product.description}</p>
 
         {/* Seleção de Tamanho */}
         <div className="mb-4">
@@ -48,7 +48,7 @@ const ProductViewPage = () => {
               <button
                 key={size}
                 onClick={() => setSelectedSize(size)}
-                className={`px-3 py-1 border rounded ${
+                className={`px-3 py-1 border rounded text-sm sm:text-base ${
                   selectedSize === size
                     ? 'bg-pink-600 text-white border-pink-600'
                     : 'bg-white text-gray-700 border-gray-300 hover:border-pink-400'
@@ -68,7 +68,7 @@ const ProductViewPage = () => {
               <button
                 key={color}
                 onClick={() => setSelectedColor(color)}
-                className={`px-3 py-1 border rounded ${
+                className={`px-3 py-1 border rounded text-sm sm:text-base ${
                   selectedColor === color
                     ? 'bg-pink-600 text-white border-pink-600'
                     : 'bg-white text-gray-700 border-gray-300 hover:border-pink-400'
@@ -83,7 +83,7 @@ const ProductViewPage = () => {
         {/* Botão de comprar */}
         <button
           onClick={handleToggleCart}
-          className={`w-full text-center font-semibold text-white py-3 rounded-md transition-colors ${
+          className={`w-full text-center font-semibold text-white py-3 rounded-md transition-colors text-sm sm:text-base ${
             added ? 'bg-green-600 hover:bg-green-700' : 'bg-pink-700 hover:bg-pink-800'
           }`}
         >
@@ -95,6 +95,7 @@ const ProductViewPage = () => {
 };
 
 export default ProductViewPage;
+
 
 
 

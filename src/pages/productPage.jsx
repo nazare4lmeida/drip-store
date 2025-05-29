@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { products } from '../data/products';
 import ProductListingList from '../components/AbaProdutos/productListingList';
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-
+import { Link, useLocation } from 'react-router-dom';
 
 const ProductPage = () => {
   const [order, setOrder] = useState('menor-preco');
@@ -11,7 +9,6 @@ const ProductPage = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const searchQuery = searchParams.get('filter')?.toLowerCase() || '';
-
 
   const allFilters = [
     { label: 'Marca', options: ['Adidas', 'Balenciaga', 'K-Swiss', 'Nike', 'Puma'] },
@@ -26,21 +23,21 @@ const ProductPage = () => {
     );
   };
 
-const filteredProducts = products.filter((product) => {
-  const matchesSearch =
-    !searchQuery ||
-    product.title.toLowerCase().includes(searchQuery) ||
-    product.category?.toLowerCase().includes(searchQuery);
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch =
+      !searchQuery ||
+      product.title.toLowerCase().includes(searchQuery) ||
+      product.category?.toLowerCase().includes(searchQuery);
 
-  const matchesFilter =
-    filters.length === 0 ||
-    filters.some((f) =>
-      product.title.toLowerCase().includes(f.toLowerCase()) ||
-      product.category === f
-    );
+    const matchesFilter =
+      filters.length === 0 ||
+      filters.some((f) =>
+        product.title.toLowerCase().includes(f.toLowerCase()) ||
+        product.category === f
+      );
 
-  return matchesSearch && matchesFilter;
-});
+    return matchesSearch && matchesFilter;
+  });
 
   const sortedProducts = filteredProducts.sort((a, b) => {
     if (order === 'menor-preco') return a.price - b.price;
@@ -49,7 +46,7 @@ const filteredProducts = products.filter((product) => {
   });
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 px-6 md:px-10 py-6">
+    <div className="flex flex-col lg:flex-row gap-8 px-4 sm:px-6 md:px-10 py-6 w-full">
       {/* Sidebar de Filtros */}
       <aside className="w-full lg:w-[280px] flex-shrink-0">
         <h3 className="text-gray-700 text-[16px] font-semibold mb-4">Filtrar por:</h3>
@@ -74,9 +71,9 @@ const filteredProducts = products.filter((product) => {
       </aside>
 
       {/* Main */}
-      <main className="flex-1">
+      <main className="flex-1 w-full">
         {/* Linha de cima: ordenação + contagem */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 w-full flex-wrap">
           <span className="text-sm text-gray-500">
             {filters.length === 0 ? (
               <>Todos os produtos – {sortedProducts.length} produto(s)</>
@@ -86,7 +83,7 @@ const filteredProducts = products.filter((product) => {
               </>
             )}
           </span>
-          <div className="flex items-center gap-2 ml-auto">
+          <div className="flex items-center gap-2 ml-auto w-full sm:w-auto">
             <label htmlFor="order" className="text-sm text-gray-600">
               Ordenar por:
             </label>
@@ -94,7 +91,7 @@ const filteredProducts = products.filter((product) => {
               id="order"
               value={order}
               onChange={(e) => setOrder(e.target.value)}
-              className="h-[40px] border border-light-gray-2 rounded px-3 text-sm text-dark-gray-2"
+              className="h-[40px] border border-light-gray-2 rounded px-3 text-sm text-dark-gray-2 w-full sm:w-auto"
             >
               <option value="menor-preco">Menor preço</option>
               <option value="maior-preco">Maior preço</option>
@@ -105,9 +102,9 @@ const filteredProducts = products.filter((product) => {
         <ProductListingList products={sortedProducts} />
 
         {/* Botão Ir para o carrinho */}
-        <div className="flex justify-center mt-10">
-          <Link to="/pedidos">
-            <button className="px-6 py-3 bg-pink-700 hover:bg-pink-800 text-white font-semibold rounded">
+        <div className="flex justify-end mt-10 w-full">
+          <Link to="/pedidos" className="w-full sm:w-auto">
+            <button className="w-full sm:w-auto px-6 py-3 bg-pink-700 hover:bg-pink-800 text-white font-semibold rounded text-center">
               Ir para o carrinho
             </button>
           </Link>
@@ -118,6 +115,7 @@ const filteredProducts = products.filter((product) => {
 };
 
 export default ProductPage;
+
 
 
 

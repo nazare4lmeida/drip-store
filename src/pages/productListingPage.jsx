@@ -58,8 +58,9 @@ const ProductListingPage = () => {
 
   return (
     <Layout>
-      <div className="flex gap-6 px-8 py-6">
-        <aside className="w-[308px] flex-shrink-0">
+      <div className="flex flex-col lg:flex-row gap-6 px-4 sm:px-6 md:px-8 py-6 w-full">
+        {/* Sidebar */}
+        <aside className="w-full lg:w-[308px] flex-shrink-0">
           <label htmlFor="order-select" className="block mb-2 text-gray-700 text-sm">
             Ordenar por
           </label>
@@ -90,7 +91,8 @@ const ProductListingPage = () => {
           </div>
         </aside>
 
-        <main className="flex-1">
+        {/* Conteúdo principal */}
+        <main className="flex-1 w-full">
           <Section 
             title={`Total de produtos encontrados: ${sortedProducts.length}`} 
             titleAlign="left"
@@ -104,7 +106,3 @@ const ProductListingPage = () => {
 };
 
 export default ProductListingPage;
-
-
-
-

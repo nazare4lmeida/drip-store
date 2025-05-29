@@ -14,10 +14,10 @@ const ProductListing = ({ products }) => {
   const isHomePage = location.pathname === "/";
   console.log("IDs dos produtos:", products.map(p => p.id));
   products.forEach((product) => {
-  if (!product.id) {
-    console.warn("Produto sem ID:", product);
-  }
-});
+    if (!product.id) {
+      console.warn("Produto sem ID:", product);
+    }
+  });
 
   return (
     <section className="px-4 mb-12">
@@ -34,22 +34,22 @@ const ProductListing = ({ products }) => {
         )}
       </div>
 
-      {/* Renderização dos produtos */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-    {Array.isArray(products) &&
-      products?.map((product, index) => (
-        <ProductCard
-          key={product.id ?? `${product.name}-${index}`}
-          product={product}
-        />
-      ))}
-
-  </div>
+      {/* Grid de produtos responsivo */}
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+        {Array.isArray(products) &&
+          products?.map((product, index) => (
+            <ProductCard
+              key={product.id ?? `${product.name}-${index}`}
+              product={product}
+            />
+          ))}
+      </div>
     </section>
   );
 };
 
 export default ProductListing;
+
 
 
 
