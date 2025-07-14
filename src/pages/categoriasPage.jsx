@@ -7,7 +7,7 @@ const categorias = [
   },
   {
     nome: 'Calças',
-    imagem: 'https://rivierawear.com.br/cdn/shop/files/S7818ae00b9084262835f54fff6d61f1fU.jpg?v=1688494129',
+    imagem: 'https://imageswscdn.wslojas.com.br/files/24465/MED_produto-calca-cargo-jeans-fire-apparel-design-azul-2350.jpg',
   },
   {
     nome: 'Bonés',
