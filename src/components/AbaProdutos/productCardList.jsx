@@ -2,72 +2,93 @@ import { Link } from "react-router-dom";
 import { useCart } from "../../contexts/cartContext";
 
 const ProductCardList = ({ id, image, name, category, price, priceDiscount, fullProduct }) => {
-  const { cartItems, addToCart, removeFromCart } = useCart();
+  const { addToCart } = useCart();
 
-  const isInCart = cartItems.some((item) => item.id === id);
+  // 1. CÁLCULO DO DESCONTO E VERIFICAÇÃO
+  // Verifica se o desconto é válido (existe e é menor que o preço original)
+  const hasDiscount = typeof priceDiscount === 'number' && priceDiscount < price;
+  
+  let discountPercentage = 0;
+  if (hasDiscount) {
+    // Calcula a porcentagem de desconto e arredonda
+    discountPercentage = Math.round(((price - priceDiscount) / price) * 100);
+  }
 
-  const handleCartClick = (e) => {
-    e.preventDefault(); 
-    if (isInCart) {
-      removeFromCart(id);
-    } else {
-      addToCart(fullProduct);
-    }
+  // Função para adicionar ao carrinho (agora não precisa mais remover, o botão é estático)
+  const handleAddToCart = () => {
+    addToCart(fullProduct);
+    // Opcional: Adicionar um alerta ou notificação para o usuário
+    // alert(`${name} foi adicionado ao carrinho!`);
   };
 
+  // Sua função de formatar preço está ótima, vamos mantê-la
   const formatPrice = (value) => {
     if (typeof value !== "number") return null;
     return new Intl.NumberFormat("pt-BR", {
       style: "currency",
       currency: "BRL",
-      minimumFractionDigits: 2,
     }).format(value);
   };
 
   return (
-    <div className="flex flex-col border rounded-lg overflow-hidden shadow-md bg-white transition hover:shadow-lg">
-      <Link to={`/produto/${id}`} className="block">
-        <div className="relative h-56 flex items-center justify-center p-4 cursor-pointer">
-          <span className="absolute top-2 left-2 bg-lime-200 text-xs font-bold text-gray-800 px-2 py-1 rounded">
-            30% OFF
-          </span>
-          <img src={image} alt={`Imagem do produto ${name}`} className="max-h-40 object-contain" />
+    // Estrutura do card com flex-col para garantir que o rodapé com os botões fique sempre em baixo
+    <div className="bg-white border border-gray-200 rounded-lg shadow-md flex flex-col justify-between transition-shadow hover:shadow-xl">
+      
+      {/* Parte de cima do card: Imagem e Tag de Desconto */}
+      <Link to={`/produto/${id}`} className="block relative">
+        {/* 2. TAG DE DESCONTO DINÂMICA E CONDICIONAL */}
+        {/* Só aparece se 'hasDiscount' for verdadeiro */}
+        {hasDiscount && (
+          <div className="absolute top-3 left-3 bg-green-200 text-green-800 text-xs font-bold px-3 py-1 rounded-md z-10">
+            {discountPercentage}% OFF
+          </div>
+        )}
+        <div className="h-56 w-full flex items-center justify-center p-4">
+          <img 
+            src={image} 
+            alt={`Imagem do produto ${name}`} 
+            className="max-h-full max-w-full object-contain" 
+          />
         </div>
       </Link>
-      <div className="p-4 flex flex-col gap-2">
-        <p className="text-sm text-gray-500">{category}</p>
-        <p className="font-medium text-sm">{name}</p>
-        <div className="text-sm">
-          {formatPrice(price) && (
-            <span className="line-through text-gray-400 mr-2">{formatPrice(price)}</span>
-          )}
-          {formatPrice(priceDiscount) && (
-            <span className="font-bold text-black">{formatPrice(priceDiscount)}</span>
+      
+      {/* Container para o conteúdo de texto, para que cresça e empurre os botões para baixo */}
+      <div className="p-4 flex flex-col flex-grow">
+        <span className="text-xs text-gray-500 mb-1">{category}</span>
+        <h3 className="text-md font-semibold text-gray-800 mb-2 flex-grow">{name}</h3>
+        
+        {/* 3. LÓGICA DE PREÇO CORRIGIDA */}
+        <div className="mb-4">
+          {hasDiscount ? (
+            // Se tiver desconto: mostra preço antigo riscado e o novo em destaque
+            <div className="flex items-baseline gap-2">
+              <del className="text-sm text-gray-400">{formatPrice(price)}</del>
+              <strong className="text-lg font-bold text-gray-900">{formatPrice(priceDiscount)}</strong>
+            </div>
+          ) : (
+            // Se NÃO tiver desconto: mostra apenas o preço normal
+            <strong className="text-lg font-bold text-gray-900">{formatPrice(price)}</strong>
           )}
         </div>
-        <button
-          onClick={handleCartClick}
-          className={`mt-2 py-1 px-3 rounded text-sm transition font-semibold w-fit ${
-            isInCart
-              ? "bg-green-500 text-white hover:bg-green-600"
-              : "bg-primary text-white hover:brightness-110"
-          }`}
+      </div>
+      
+      {/* 4. BOTÕES COM O LAYOUT CORRETO */}
+      <div className="p-4 pt-0">
+        <button 
+          onClick={handleAddToCart}
+          className="w-full bg-pink-600 text-white font-bold py-2 rounded-lg hover:bg-pink-700 transition mb-2"
         >
-          {isInCart ? "Adicionado ao carrinho" : "Adicionar ao carrinho"}
+          Adicionar ao carrinho
         </button>
+        <Link
+          to={`/produto/${id}`} // Leva para a página de detalhes do produto
+          className="w-full block text-center bg-gray-200 text-gray-800 font-bold py-2 rounded-lg hover:bg-gray-300 transition"
+        >
+          Ver mais
+        </Link>
       </div>
     </div>
   );
 };
 
 export default ProductCardList;
-
-
-
-
-
-
-
-
-
-

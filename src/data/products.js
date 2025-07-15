@@ -40,6 +40,8 @@ export const products = [
       { src: "https://imgadidas-a.akamaihd.net/360x360/0163498WA1_2.jpg" }
     ],
     category: "Tênis",
+    gender: "Unissex",
+    condition: "Novo",
     brand: "Adidas",
     sizes: [37, 38, 39, 40, 41],
     colors: ["#1a1a1a", "#eaeaea"],
@@ -62,6 +64,8 @@ export const products = [
       { src: "https://imgpuma-a.akamaihd.net/360x360/0163499WA1_2.jpg" }
     ],
     category: "Tênis",
+    gender: "Unissex",
+    condition: "Novo",
     brand: "Puma",
     sizes: [36, 38, 40, 42],
     colors: ["#d62828", "#003049"],
@@ -84,6 +88,8 @@ export const products = [
       { src: "https://imgnewbalance-a.akamaihd.net/360x360/0163500WA1_2.jpg" }
     ],
     category: "Tênis",
+    gender: "Unissex",
+    condition: "Novo",
     brand: "New Balance",
     sizes: [39, 40, 41, 42, 43],
     colors: ["#2b2d42", "#8d99ae"],
@@ -106,6 +112,8 @@ export const products = [
       { src: "https://imgasics-a.akamaihd.net/360x360/0163501WA1_2.jpg" }
     ],
     category: "Tênis",
+    gender: "Unissex",
+    condition: "Novo",
     brand: "Asics",
     sizes: [37, 39, 41, 43],
     colors: ["#264653", "#e76f51"],
@@ -128,6 +136,8 @@ export const products = [
       { src: "https://imgreebok-a.akamaihd.net/360x360/0163502WA1_2.jpg" }
     ],
     category: "Tênis",
+    gender: "Unissex",
+    condition: "Novo",
     brand: "Reebok",
     sizes: [36, 38, 40, 42],
     colors: ["#f5f3f4", "#22223b"],
@@ -150,6 +160,8 @@ export const products = [
       { src: "https://imgvans-a.akamaihd.net/360x360/0163503WA1_2.jpg" }
     ],
     category: "Tênis",
+    gender: "Unissex",
+    condition: "Novo",
     brand: "Vans",
     sizes: [35, 37, 39, 41],
     colors: ["#000000", "#ffffff", "#ff595e"],
@@ -172,12 +184,107 @@ export const products = [
       { src: "https://imgconverse-a.akamaihd.net/360x360/0163504WA1_2.jpg" }
     ],
     category: "Tênis",
+    gender: "Unissex",
+    condition: "Novo",
     brand: "Converse",
     sizes: [36, 37, 38, 39, 40],
     colors: ["#ffffff", "#000000", "#e63946"],
     relatedProducts: [7]
+  },
+  {
+    id: 9,
+    title: "Camisa Joy Division",
+    name: "Camisa Joy Division",
+    reference: "Ref. STAMP-JD-BR",
+    stars: 4.9,
+    rating: 95,
+    price: 179.99,
+    priceDiscount: 29.99,
+    description: "Camiseta preta de algodão com estampa clássica da capa do álbum 'Unknown Pleasures' da banda Joy Division.",
+    image: "https://stamp.jetassets.com.br/produto/TS1722_2024-09-19_14_33_09_0.jpeg",
+    images: [
+        { src: "https://stamp.jetassets.com.br/produto/TS1722_2024-09-19_14_33_09_0.jpeg" },
+        { src: "https://exemplo.com/camisa_costas.jpg" },
+        { src: "https://exemplo.com/camisa_detalhe.jpg" }
+    ],
+    category: "Camisetas",
+    gender: "Unissex",
+    condition: "Novo",
+    brand: "Stamp",
+    sizes: ["P", "M", "G", "GG"],
+    colors: ["#000000"],
+    relatedProducts: [10, 11]
+  },
+  {
+    id: 10,
+    title: "Calça Mom Jeans",
+    name: "Calça Mom Jeans",
+    reference: "Ref. OQV-MOM-BR",
+    stars: 4.7,
+    rating: 110,
+    price: 400.00,
+    priceDiscount: 349.99,
+    description: "Calça jeans estilo 'mom' com cintura alta, modelagem reta e lavagem clara. Perfeita para um look casual e confortável.",
+    image: "https://oqvestir.fbitsstatic.net/img/p/calca-feminina-mom-jeans-azul-178657/463134.jpg?w=1600&h=2133&v=202501231556",
+    images: [
+        { src: "https://oqvestir.fbitsstatic.net/img/p/calca-feminina-mom-jeans-azul-178657/463134.jpg?w=1600&h=2133&v=202501231556" },
+        { src: "https://exemplo.com/calca_costas.jpg" },
+        { src: "https://exemplo.com/calca_detalhe.jpg" }
+    ],
+    category: "Calças",
+    gender: "Feminino",
+    condition: "Novo",
+    brand: "OQVestir",
+    sizes: [36, 38, 40, 42, 44],
+    colors: ["#89c2d9"],
+    relatedProducts: [9, 7]
+  },
+  {
+    id: 11,
+    title: "Boné MST",
+    name: "Boné MST",
+    reference: "Ref. MST-BONE-BR",
+    stars: 4.8,
+    rating: 350,
+    price: 89.90,
+    priceDiscount: 69.90,
+    description: "Boné de brim vermelho com 6 gomos, fecho ajustável e logo clássico bordado na frente. Um símbolo de luta e estilo.",
+    image: "https://http2.mlstatic.com/D_NQ_NP_662323-MLB78900818559_092024-O-bone-mst-brim-6-gomos-adulto.webp",
+    images: [
+        { src: "https://http2.mlstatic.com/D_NQ_NP_662323-MLB78900818559_092024-O-bone-mst-brim-6-gomos-adulto.webp" },
+        { src: "https://exemplo.com/bone_lado.jpg" },
+        { src: "https://exemplo.com/bone_tras.jpg" }
+    ],
+    category: "Bonés",
+    gender: "Unissex",
+    condition: "Novo",
+    brand: "MST",
+    sizes: ["Único"],
+    colors: ["#d62828"],
+    relatedProducts: [9, 12]
+  },
+  {
+    id: 12,
+    title: "Headphone JBL",
+    name: "Headphone JBL Tune 520BT",
+    reference: "Ref. JBL-T520-BR",
+    stars: 4.9,
+    rating: 540,
+    price: 299.00,
+    priceDiscount: 249.00,
+    description: "Headphone on-ear sem fio JBL Tune 520BT com tecnologia Bluetooth 5.3, som JBL Pure Bass e bateria de longa duração.",
+    image: "https://m.media-amazon.com/images/I/61BDf8KO8AL.__AC_SX300_SY300_QL70_ML2_.jpg",
+    images: [
+        { src: "https://m.media-amazon.com/images/I/61BDf8KO8AL.__AC_SX300_SY300_QL70_ML2_.jpg" },
+        { src: "https://exemplo.com/headphone_lado.jpg" },
+        { src: "https://exemplo.com/headphone_dobrado.jpg" }
+    ],
+    category: "Headphones",
+    gender: "Unissex",
+    condition: "Novo",
+    brand: "JBL",
+    sizes: ["N/A"],
+    colors: ["#000000", "#FFFFFF", "#0077b6"],
+    relatedProducts: [11, 2]
   }
 ];
-
-
-
