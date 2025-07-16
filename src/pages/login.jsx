@@ -2,19 +2,44 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { FcGoogle } from 'react-icons/fc';
-import { FaFacebook, FaMicrosoft } from 'react-icons/fa'; // Importe a imagem do tênis
+import { FaFacebook, FaMicrosoft } from 'react-icons/fa';
+import { api, setAuthToken } from '../services/api'; // NOVO: Importa a nossa API e a função de token
 
 const Login = () => {
   const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [password, setPassword] = useState(''); // ALTERADO: 'senha' para 'password' para consistência
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  // ALTERADO: Substituímos toda a função de login
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Tentativa de login com:", { email, senha });
-    alert("Login simulado com sucesso!");
-    navigate('/');
+    
+    // O objeto enviado para a API deve ter as chaves 'email' e 'password'
+    try {
+      const response = await api.post('/usuario/token', {
+        email,
+        password 
+      });
+
+      const token = response.data.token;
+
+      // 1. Salva o token no localStorage para persistir a sessão
+      localStorage.setItem('authToken', token);
+
+      // 2. Configura o token na instância do Axios para as próximas requisições
+      setAuthToken(token);
+
+      alert("Login realizado com sucesso!");
+      navigate('/'); // Redireciona para a página inicial após o login
+
+    } catch (error) {
+      console.error("Erro no login:", error);
+
+      // Pega a mensagem de erro específica do backend, se existir
+      const errorMessage = error.response?.data?.error || "Email ou senha incorretos. Tente novamente.";
+      alert(errorMessage);
+    }
   };
 
   return (
@@ -52,7 +77,7 @@ const Login = () => {
                   Senha *
                 </label>
                 <input
-                  id="password" type={showPassword ? 'text' : 'password'} required value={senha} onChange={(e) => setSenha(e.target.value)}
+                  id="password" type={showPassword ? 'text' : 'password'} required value={password} onChange={(e) => setPassword(e.target.value)} // ALTERADO: usa o estado 'password'
                   className="block w-full px-3 py-2.5 bg-gray-100 border-none rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 sm:text-sm"
                   placeholder="Insira sua senha"
                 />
