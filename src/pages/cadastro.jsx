@@ -1,8 +1,33 @@
-import React from 'react';
-// Importe o Link para navegar de volta para a página de login
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+// MUDANÇA 1: Importar os ícones de olho
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 const Cadastro = () => {
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  
+  // MUDANÇA 2: Adicionar um estado para controlar a visibilidade da senha
+  const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleProximaEtapa = (e) => {
+    e.preventDefault(); 
+    if (!nome || !email || !senha) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+    navigate('/completar-cadastro', { 
+      state: { 
+        nome: nome, 
+        email: email 
+        // Não passamos a senha, a nova página pedirá para confirmá-la.
+      } 
+    });
+  };
+
   return (
     <div className="bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-lg">
@@ -17,7 +42,7 @@ const Cadastro = () => {
             </Link>
           </p>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={(e) => e.preventDefault()}>
+        <form className="mt-8 space-y-6" onSubmit={handleProximaEtapa}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <label htmlFor="full-name" className="sr-only">Nome Completo</label>
@@ -28,6 +53,8 @@ const Cadastro = () => {
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
                 placeholder="Seu nome completo"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
               />
             </div>
             <div>
@@ -39,18 +66,33 @@ const Cadastro = () => {
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
                 placeholder="Seu e-mail"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div>
+            {/* MUDANÇA 3: O campo de senha agora está dentro de uma div 'relative' */}
+            <div className="relative">
               <label htmlFor="password" className="sr-only">Senha</label>
               <input
                 id="password"
                 name="password"
-                type="password"
+                // MUDANÇA 4: O tipo do input muda com base no estado 'showPassword'
+                type={showPassword ? 'text' : 'password'}
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
                 placeholder="Crie uma senha"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
               />
+              {/* MUDANÇA 5: O botão com o ícone para alternar a visibilidade */}
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700"
+                aria-label="Mostrar ou ocultar senha"
+              >
+                {showPassword ? <FiEyeOff /> : <FiEye />}
+              </button>
             </div>
           </div>
 
