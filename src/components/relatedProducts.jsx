@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 // ATENÇÃO: Verifique se este caminho está correto para o seu card de produto.
 // Seu arquivo se chama 'ProductCardList', mas ele funciona como um único 'ProductCard'.
-import ProductCard from './AbaProdutos/ProductCardList'; 
+import ProductCard from './AbaProdutos/productCardList'; 
 
 const RelatedProducts = ({ currentProduct, allProducts }) => {
   // Filtra até 4 produtos da mesma categoria, excluindo o produto atual
